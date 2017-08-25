@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from __future__ import print_function
+
 import serial
 import os
 import sys
@@ -193,21 +195,21 @@ if __name__ == "__main__":
     logger.handle_options(options)
 
     if options.list_radios:
-        print "Supported Radios:\n\t", "\n\t".join(sorted(RADIOS.keys()))
+        print("Supported Radios:\n\t", "\n\t".join(sorted(RADIOS.keys())))
         sys.exit(0)
 
     if options.id:
         from chirp import icf
         s = serial.Serial(port=options.serial, baudrate=9600, timeout=0.5)
         md = icf.get_model_data(s)
-        print "Model:\n%s" % util.hexprint(md)
+        print("Model:\n%s" % util.hexprint(md))
         sys.exit(0)
 
     if not options.radio:
         if options.mmap:
             rclass = directory.get_radio_by_image(options.mmap).__class__
         else:
-            print "You must specify a radio model.  See --list-radios."
+            print("You must specify a radio model.  See --list-radios.")
             sys.exit(1)
     else:
         rclass = directory.get_radio(options.radio)

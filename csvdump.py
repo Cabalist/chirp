@@ -17,6 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from __future__ import print_function
 import gtk
 import sys
 
@@ -26,7 +27,7 @@ if hasattr(sys, "frozen"):
     log = open("debug.log", "w", 0)
     sys.stderr = log
     sys.stdout = log
-    print "Log initialized"
+    print("Log initialized")
 
 a = csvapp.CsvDumpApp()
 a.run()

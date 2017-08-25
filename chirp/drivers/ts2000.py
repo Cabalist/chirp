@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
 import re
 from chirp import chirp_common, directory, util, errors
 from chirp.drivers import kenwood_live
@@ -218,7 +219,7 @@ class TS2000Radio(KenwoodLiveRadio):
             duplex = 0
             offset = 0
         else:
-            print "Bug: unsupported duplex `%s'" % mem.duplex
+            print("Bug: unsupported duplex `%s'" % mem.duplex)
         if mem.mode in ["AM", "FM"]:
             step = TS2000_FM_STEPS.index(mem.tuning_step)
         else:
@@ -260,7 +261,7 @@ class TS2000Radio(KenwoodLiveRadio):
         elif mem.duplex == "split":
             duplex = 0
         else:
-            print "Bug: unsupported duplex `%s'" % mem.duplex
+            print("Bug: unsupported duplex `%s'" % mem.duplex)
         if mem.mode in ["AM", "FM"]:
             step = TS2000_FM_STEPS.index(mem.tuning_step)
         else:

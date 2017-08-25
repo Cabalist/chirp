@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 from chirp.drivers import icf
 from chirp import directory, bitwise, chirp_common
 
@@ -333,6 +335,6 @@ class ID31Radio(icf.IcomCloneModeRadio, chirp_common.IcomDstarSupport):
         return calls
 
 if __name__ == "__main__":
-    print repr(_decode_call(_encode_call("KD7REX B")))
-    print repr(_decode_call(_encode_call("       B")))
-    print repr(_decode_call(_encode_call("        ")))
+    print(repr(_decode_call(_encode_call("KD7REX B"))))
+    print(repr(_decode_call(_encode_call("       B"))))
+    print(repr(_decode_call(_encode_call("        "))))

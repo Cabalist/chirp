@@ -1,4 +1,5 @@
 # coding=utf-8
+from __future__ import print_function
 from tests.unit import base
 from chirp import chirp_common
 from chirp import errors
@@ -209,7 +210,7 @@ class TestStepFunctions(base.BaseTest):
 
     def test_is_fractional_step(self):
         for freq in self._125 + self._625:
-            print freq
+            print(freq)
             self.assertTrue(chirp_common.is_fractional_step(freq))
 
     def test_is_6_25(self):

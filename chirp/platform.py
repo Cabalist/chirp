@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import os
 import sys
 import glob
@@ -477,16 +479,16 @@ def get_platform(basepath=None):
 def _do_test():
     __pform = get_platform()
 
-    print "Config dir: %s" % __pform.config_dir()
-    print "Default dir: %s" % __pform.default_dir()
-    print "Log file (foo): %s" % __pform.log_file("foo")
-    print "Serial ports: %s" % __pform.list_serial_ports()
-    print "OS Version: %s" % __pform.os_version_string()
+    print("Config dir: %s" % __pform.config_dir())
+    print("Default dir: %s" % __pform.default_dir())
+    print("Log file (foo): %s" % __pform.log_file("foo"))
+    print("Serial ports: %s" % __pform.list_serial_ports())
+    print("OS Version: %s" % __pform.os_version_string())
     # __pform.open_text_file("d-rats.py")
 
-    # print "Open file: %s" % __pform.gui_open_file()
-    # print "Save file: %s" % __pform.gui_save_file(default_name="Foo.txt")
-    print "Open folder: %s" % __pform.gui_select_dir("/tmp")
+    # print("Open file: %s" % __pform.gui_open_file())
+    # print("Save file: %s" % __pform.gui_save_file(default_name="Foo.txt"))
+    print("Open folder: %s" % __pform.gui_select_dir("/tmp"))
 
 if __name__ == "__main__":
     _do_test()

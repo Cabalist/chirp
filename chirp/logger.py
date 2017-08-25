@@ -15,6 +15,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from __future__ import print_function
+
 r"""
 The chirp.logger module provides the core logging facilties for CHIRP.
 It sets up the console and (optionally) a log file.  For early debugging,
@@ -39,7 +41,7 @@ def version_string():
 
 class VersionAction(argparse.Action):
     def __call__(self, parser, namespace, value, option_string=None):
-        print version_string()
+        print(version_string())
         sys.exit(1)
 
 

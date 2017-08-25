@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
 import gtk
 import gobject
 import pango
@@ -652,4 +653,4 @@ if __name__ == "__main__":
     d = ImportDialog(radio)
     d.run()
 
-    print d.get_import_list()
+    print(d.get_import_list())

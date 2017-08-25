@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 """Rugged RH5R V2 radio management module"""
 
 import struct
@@ -168,7 +170,7 @@ class TYTTHUVF8_V2(chirp_common.CloneModeRadio):
                 filedata[0x840:0x848] == cls._FILEID)
 
     def process_mmap(self):
-        print MEM_FORMAT
+        print(MEM_FORMAT)
         self._memobj = bitwise.parse(MEM_FORMAT, self._mmap)
 
     def get_raw_memory(self, number):

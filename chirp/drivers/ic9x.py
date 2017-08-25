@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import time
 import threading
 import logging
@@ -418,8 +420,8 @@ def _test():
     import serial
     ser = IC9xRadioB(serial.Serial(port="/dev/ttyUSB1",
                                    baudrate=38400, timeout=0.1))
-    print ser.get_urcall_list()
-    print "-- FOO --"
+    print(ser.get_urcall_list())
+    print("-- FOO --")
     ser.set_urcall_list(["K7TAY", "FOOBAR", "BAZ"])
 
 

@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import gobject
 import gtk
 import threading
@@ -56,7 +58,7 @@ class CsvDumpApp(object):
             radio.status_fn = self.update_status
             radio.sync_in()
 
-            print "Sync done, saving to: %s" % fn
+            print("Sync done, saving to: %s" % fn)
             radio.save_mmap(fn)
 
             self.refresh_radio()
@@ -90,7 +92,7 @@ class CsvDumpApp(object):
             radio = RADIOS[self.rtype](s)
             radio.status_fn = self.update_status
 
-            print "Loading image from %s" % fn
+            print("Loading image from %s" % fn)
             radio.load_mmap(fn)
 
             radio.sync_out()
@@ -118,9 +120,9 @@ class CsvDumpApp(object):
             self.mainwin.set_status("%s: %s" % (fname, e))
             return
 
-        print >> f, chirp.chirp_common.Memory.CSV_FORMAT
+        print(chirp.chirp_common.Memory.CSV_FORMAT, file=f)
         for m in self.radio.get_memories():
-            print >> f, m.to_csv()
+            print(m.to_csv(), file=f)
             count += 1
         f.close()
 
@@ -136,7 +138,7 @@ class CsvDumpApp(object):
             gobject.idle_add(self.mainwin.set_status, "%s: %s" % (fname, e))
             return
 
-        print >> f, chirp.chirp_common.Memory.CSV_FORMAT
+        print(chirp.chirp_common.Memory.CSV_FORMAT, file=f)
         for i in range(l, h + 1):
             s = chirp.chirp_common.Status()
             s.msg = "Reading memory %i" % i
@@ -146,7 +148,7 @@ class CsvDumpApp(object):
 
             try:
                 m = self.radio.get_memory(i)
-                print >> f, m.to_csv()
+                print(m.to_csv(), file=f)
             except chirp.errors.InvalidMemoryLocation:
                 pass
 
@@ -198,7 +200,7 @@ class CsvDumpApp(object):
             m.number = int(num)
             m.freq = float(freq)
         except Exception as e:
-            print "Failed to parse `%s': %s" % (line, e)
+            print("Failed to parse `%s': %s" % (line, e))
             return None
 
         return m
@@ -225,7 +227,7 @@ class CsvDumpApp(object):
             except errors.InvalidMemoryLocation:
                 continue
             except Exception as e:
-                print "Parse error on line %i: %s" % (lineno, e)
+                print("Parse error on line %i: %s" % (lineno, e))
                 break  # FIXME: Report error here
 
             lineno += 1
@@ -247,7 +249,7 @@ class CsvDumpApp(object):
             try:
                 self.radio.set_memory(m)
             except Exception as e:
-                print "Error setting memory %i: %s" % (m.number, e)
+                print("Error setting memory %i: %s" % (m.number, e))
                 break
 
             count += 1
@@ -272,7 +274,7 @@ class CsvDumpApp(object):
             lineno += 1
             try:
                 m = chirp.chirp_common.Memory.from_csv(line.strip())
-                print "Imported: %s" % m
+                print("Imported: %s" % m)
             except Exception as e:
                 if lineno == 1:
                     continue
@@ -281,10 +283,10 @@ class CsvDumpApp(object):
                 self.mainwin.set_status("Error on line %i: %s" % (lineno, e))
                 return
 
-            print "Setting memory: %s" % m
+            print("Setting memory: %s" % m)
             self.radio.set_memory(m)
 
-        print "Saving image to %s.img" % self.rtype
+        print("Saving image to %s.img" % self.rtype)
         self.radio.save_mmap("%s.img" % self.rtype)
 
         self.mainwin.set_status("Imported %s" % os.path.basename(fname))

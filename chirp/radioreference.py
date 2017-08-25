@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import logging
 from chirp import chirp_common, errors
 
@@ -186,8 +188,8 @@ def main():
                    username=sys.argv[2],
                    password=sys.argv[3])
     rrr.do_fetch()
-    print rrr.get_raw_memory(0)
-    print rrr.get_memory(0)
+    print(rrr.get_raw_memory(0))
+    print(rrr.get_memory(0))
 
 if __name__ == "__main__":
     main()

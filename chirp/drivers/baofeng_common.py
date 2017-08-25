@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 """common functions for Baofeng (or similar) handheld radios"""
 
 import time
@@ -166,7 +168,7 @@ def _ident_radio(radio):
             data = _do_ident(radio, magic)
             return data
         except errors.RadioError as e:
-            print e
+            print(e)
             error = e
             time.sleep(2)
     if error:

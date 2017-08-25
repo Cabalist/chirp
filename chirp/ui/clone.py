@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import collections
 import threading
 import logging
@@ -269,4 +271,4 @@ class CloneThread(threading.Thread):
 if __name__ == "__main__":
     d = CloneSettingsDialog("/dev/ttyUSB0")
     r = d.run()
-    print r
+    print(r)

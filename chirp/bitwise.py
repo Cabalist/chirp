@@ -58,6 +58,8 @@
 # as integers directly (for int types).  Strings and BCD arrays
 # behave as expected.
 
+from __future__ import print_function
+
 import struct
 import os
 import logging
@@ -92,12 +94,12 @@ def pp(structure, level=0):
             pp(i, level+2)
         elif isinstance(i, tuple):
             if isinstance(i[1], str):
-                print "%s%s: %s" % (" " * level, i[0], i[1])
+                print("%s%s: %s" % (" " * level, i[0], i[1]))
             else:
-                print "%s%s:" % (" " * level, i[0])
+                print("%s%s:" % (" " * level, i[0]))
                 pp(i, level+2)
         elif isinstance(i, str):
-            print "%s%s" % (" " * level, i)
+            print("%s%s" % (" " * level, i))
 
 
 def array_copy(dst, src):
@@ -908,14 +910,14 @@ struct {
     data = "\xab\x7F\x81abc\x12\x34"
     tree = parse(defn, data)
 
-    print repr(tree)
+    print(repr(tree))
 
-    print "Foo %i" % tree.mystruct.foo
-    print "Highbit: %i SixZeros: %i: Lowbit: %i" % (tree.mystruct.highbit,
-                                                    tree.mystruct.sixzeros,
-                                                    tree.mystruct.lowbit)
-    print "String: %s" % tree.mystruct.string
-    print "Fourdigits: %i" % tree.mystruct.fourdigits
+    print("Foo %i" % tree.mystruct.foo)
+    print("Highbit: %i SixZeros: %i: Lowbit: %i" % (tree.mystruct.highbit,
+                                                     tree.mystruct.sixzeros,
+                                                     tree.mystruct.lowbit))
+    print("String: %s" % tree.mystruct.string)
+    print("Fourdigits: %i" % tree.mystruct.fourdigits)
 
     import sys
     sys.exit(0)
@@ -947,26 +949,26 @@ struct {
     # Mess with it a little
     p = Processor(data, 0)
     obj = p.parse(ast)
-    print "Object: %s" % obj
-    print obj["foo"][0]["bcdL"]
-    print obj["tail"]
-    print obj["foo"][0]["bar"]
+    print ("Object: %s" % obj)
+    print(obj["foo"][0]["bcdL"])
+    print(obj["tail"])
+    print(obj["foo"][0]["bar"])
     obj["foo"][0]["bar"].set_value(255 << 8)
     obj["foo"][0]["twobit"].set_value(0)
     obj["foo"][0]["onebit"].set_value(1)
-    print "%i" % int(obj["foo"][0]["bar"])
+    print("%i" % int(obj["foo"][0]["bar"]))
 
     for i in obj["foo"][0]["array"]:
-        print int(i)
+        print(int(i))
     obj["foo"][0]["array"][1].set_value(255)
 
     for i in obj["foo"][0]["bcdL"]:
-        print i.get_value()
+        print(i.get_value())
 
     int_to_bcd(obj["foo"][0]["bcdL"], 1234)
-    print bcd_to_int(obj["foo"][0]["bcdL"])
+    print(bcd_to_int(obj["foo"][0]["bcdL"]))
 
     set_string(obj["foo"][0]["str"], "xyz")
-    print get_string(obj["foo"][0]["str"])
+    print(get_string(obj["foo"][0]["str"]))
 
-    print repr(data.get_packed())
+    print(repr(data.get_packed()))

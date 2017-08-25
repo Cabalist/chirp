@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import time
 import os
 
@@ -176,7 +178,7 @@ class FT8100Radio(yaesu_clone.YaesuCloneModeRadio):
 
         if _mem.duplex == DUPLEX.index("split"):
             tx_freq = int(_mem.offset) * 1000
-            print self.VARIANT, number, tx_freq, mem.freq
+            print(self.VARIANT, number, tx_freq, mem.freq)
             mem.offset = tx_freq - mem.freq
         else:
             mem.offset = int(_mem.offset) * 1000
@@ -190,7 +192,7 @@ class FT8100Radio(yaesu_clone.YaesuCloneModeRadio):
         if not self._memobj.enables[byte] & bit and number != 1:
             mem.empty = True
 
-        print 'R', self.VARIANT, number, _mem.baud9600
+        print('R', self.VARIANT, number, _mem.baud9600)
 
         return mem
 
@@ -292,7 +294,7 @@ def __clone_out(radio):
     pos = 0
     for block in radio._block_lengths:
         if os.getenv("CHIRP_DEBUG"):
-            print "\nSending %i-%i" % (pos, pos + block)
+            print("\nSending %i-%i" % (pos, pos + block))
         out = radio.get_mmap()[pos:pos + block]
 
         # need to chew byte-by-byte here or else we lose the ACK...not sure why
@@ -310,6 +312,6 @@ def __clone_out(radio):
 
         pos += block
 
-    print "Clone completed in %i seconds" % (time.time() - start)
+    print("Clone completed in %i seconds" % (time.time() - start))
 
     return True

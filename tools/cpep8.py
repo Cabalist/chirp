@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import os
 import sys
 import logging
@@ -91,25 +93,25 @@ def get_exceptions(f):
     return ignore
 
 if args.update:
-    print "Starting update of %d files" % len(manifest)
+    print("Starting update of %d files" % len(manifest))
     bad = []
     for f in manifest:
         checker = pep8.StyleGuide(quiet=True, ignore=get_exceptions(f))
         results = checker.check_files([f])
         if results.total_errors:
             bad.append(f)
-        print "%s: %s" % (results.total_errors and "FAIL" or "PASS", f)
+        print("%s: %s" % (results.total_errors and "FAIL" or "PASS", f))
 
     with open(blacklist_filename, "w") as fh:
-        print >>fh, """\
+        print("""\
 # cpep8.blacklist: The list of files that do not meet PEP8 standards.
 # DO NOT ADD NEW FILES!!  Instead, fix the code to be compliant.
-# Over time, this list should shrink and (eventually) be eliminated."""
-        print >>fh, "\n".join(sorted(bad))
+# Over time, this list should shrink and (eventually) be eliminated.""", file=fh)
+        print("\n".join(sorted(bad)), file=fh)
 
     if args.scan:
         with open(manifest_filename, "w") as fh:
-            print >>fh, "\n".join(sorted(manifest))
+            print("\n".join(sorted(manifest)), file=fh)
     sys.exit(0)
 
 if args.files:

@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
 from datetime import datetime
 import os
 import tempfile
@@ -971,7 +972,7 @@ of file.
         query = query % (code,
                          band and band or "%%",
                          county and county or "%%")
-        print query
+        print(query)
 
         # Do this in case the import process is going to take a while
         # to make sure we process events leading up to this
@@ -1077,7 +1078,7 @@ of file.
 
         query = "https://www.repeaterbook.com/repeaters/downloads/CHIRP/" \
                 "app_direct.php?loc=%s&band=%s&dist=%s" % (loc, band, dist)
-        print query
+        print(query)
 
         # Do this in case the import process is going to take a while
         # to make sure we process events leading up to this

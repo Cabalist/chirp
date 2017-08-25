@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import traceback
 import sys
 import os
@@ -244,8 +246,8 @@ class TestCase(object):
                                                 in b.__dict__.items()])
                     raise TestFailedError(msg, details)
             except KeyError as e:
-                print sorted(a.__dict__.keys())
-                print sorted(b.__dict__.keys())
+                print(sorted(a.__dict__.keys()))
+                print(sorted(b.__dict__.keys()))
                 raise
 
 
@@ -937,7 +939,7 @@ class TestOutput(object):
         pass
 
     def _print(self, string):
-        print >> self._out, string
+        print(string,file=self._out)
 
     def report(self, rclass, tc, msg, e):
         name = ("%s %s" % (rclass.MODEL, rclass.VARIANT))[:13]
@@ -989,7 +991,7 @@ class TestOutputHTML(TestOutput):
         self._filename = filename
 
     def prepare(self):
-        print "Writing to %s" % self._filename,
+        print("Writing to %s" % self._filename)
         sys.stdout.flush()
         self._out = open(self._filename, "w")
         s = """
@@ -1033,12 +1035,12 @@ td.SKIPPED {
   <th>Status</th><th>Message</th>
 </tr>
 """ % (CHIRP_VERSION, CHIRP_VERSION, time.strftime("%x at %X"), os.name)
-        print >>self._out, s
+        print(s, file=self._out)
 
     def cleanup(self):
-        print >>self._out, "</table></body>"
+        print("</table></body>", file=self._out)
         self._out.close()
-        print "Done"
+        print("Done")
 
     def report(self, rclass, tc, msg, e):
         s = ("<tr class='%s'>" % msg) + \
@@ -1049,7 +1051,7 @@ td.SKIPPED {
             ("<td class='%s'>%s</td>" % (msg, msg)) + \
             ("<td class='error'>%s</td>" % e) + \
             "</tr>"
-        print >>self._out, s
+        print(s,file=self._out)
         sys.stdout.write(".")
         sys.stdout.flush()
 
@@ -1076,10 +1078,10 @@ class TestRunner(object):
     def log(self, rclass, tc, e):
         fn = "logs/%s_%s.log" % (directory.get_driver(rclass), tc)
         log = open(fn, "a")
-        print >> log, "---- Begin test %s ----" % tc
+        print("---- Begin test %s ----" % tc, file=log)
         log.write(e.get_detail())
-        print >> log
-        print >> log, "---- End test %s ----" % tc
+        print(file=log))
+        print("---- End test %s ----" % tc, file=log))
         log.close()
 
     def nuke_log(self, rclass, tc):
@@ -1229,7 +1231,7 @@ Available tests:
 
     if options.live:
         if not options.driver:
-            print "Live mode requires a driver to be specified"
+            print("Live mode requires a driver to be specified")
             sys.exit(1)
         failed = tr.run_one_live(options.driver, options.live)
     elif options.driver:

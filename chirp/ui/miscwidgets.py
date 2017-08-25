@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
+
 import gtk
 import gobject
 import pango
@@ -738,9 +740,9 @@ def test():
 
     def print_val(entry):
         if entry.validate():
-            print "Valid: %s" % entry.value()
+            print("Valid: %s" % entry.value())
         else:
-            print "Invalid"
+            print("Invalid")
     lle.connect("activate", print_val)
 
     lle.set_text("45 13 12")
@@ -750,7 +752,7 @@ def test():
     except KeyboardInterrupt:
         pass
 
-    print lst.get_values()
+    print(lst.get_values())
 
 
 if __name__ == "__main__":

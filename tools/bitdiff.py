@@ -3,6 +3,8 @@
 #
 # Copyright 2013 Jens Jensen AF5MI <kd4tjx@yahoo.com>
 
+from __future__ import print_function
+
 import sys
 import os
 import argparse
@@ -12,9 +14,9 @@ import time
 def printDiff(pos, byte1, byte2, args):
     bits1 = '{0:08b}'.format(byte1)
     bits2 = '{0:08b}'.format(byte2)
-    print "@%04Xh" % pos
-    print "1:%02Xh, %sb" % (byte1, bits1)
-    print "2:%02Xh, %sb" % (byte2, bits2)
+    print("@%04Xh" % pos)
+    print("1:%02Xh, %sb" % (byte1, bits1))
+    print("2:%02Xh, %sb" % (byte2, bits2))
     if args.csv:
         writeDiffCSV(pos, byte1, byte2, args)
 
@@ -54,7 +56,7 @@ def compareFiles(args):
             printDiff(pos, b1, b2, args)
 
     pos = f1.tell() - args.offset
-    print "bytes read: %02d" % pos
+    print("bytes read: %02d" % pos)
     f1.close()
     f2.close()
 
@@ -83,7 +85,7 @@ def compareFilesDat(args):
             printDiff(pos, b1, b2, args)
 
     pos = length
-    print "bytes read: %02d" % pos
+    print("bytes read: %02d" % pos)
 
 
 def convertFileToBin(args):
@@ -148,9 +150,9 @@ args = ap.parse_args()
 if args.offset:
     args.offset = int(args.offset, 16)
 
-print "f1:", args.file1, " f2:", args.file2
+print("f1: {0} f2: {1}".format(args.file1,args.file2))
 if args.setting or args.value:
-    print "setting:", args.setting, "- value:", args.value
+    print("setting: {0} - value: {1}".format(args.setting, args.value))
 
 while True:
     if (args.dat):
