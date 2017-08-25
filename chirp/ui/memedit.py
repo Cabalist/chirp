@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # Copyright 2008 Dan Smith <dsmith@danplanet.com>
 #

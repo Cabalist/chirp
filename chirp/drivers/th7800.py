@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2014 Tom Hayward <tom@tomh.us>
 # Copyright 2014 Jens Jensen <af5mi@yahoo.com>
 # Copyright 2014 James Lee N1DDK <jml@jmlzone.com>

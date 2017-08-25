@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2010 Dan Smith <dsmith@danplanet.com>
 # Copyright 2014 Angus Ainslie <angus@akkea.ca>
 #

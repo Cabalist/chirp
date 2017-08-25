@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2013 Jens Jensen <kd4tjx@yahoo.com>
 #     based on modification of Dan Smith's and Rick Farina's original work
 #

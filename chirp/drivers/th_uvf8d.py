@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2013 Dan Smith <dsmith@danplanet.com>
 #                Eric Allen <eric@hackerengineer.net>
 #

@@ -1,3 +1,4 @@
+# coding=utf-8
 from tests.unit import base
 from chirp import chirp_common
 from chirp import errors

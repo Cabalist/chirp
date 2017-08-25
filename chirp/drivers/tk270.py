@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2016 Pavel Milanes CO7WT, <co7wt@frcuba.co.cu> <pavelmc@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify

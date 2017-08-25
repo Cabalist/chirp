@@ -1,3 +1,4 @@
+# coding=utf-8
 #
 # Copyright 2015 Marco Filippi IZ3GME <iz3gme.marco@gmail.com>
 #

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 #
 #  cpep8.py - Check Python source files for PEP8 compliance.
 #

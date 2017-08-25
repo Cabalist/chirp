@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2014 Ron Wellsted <ron@m0rnw.uk> M0RNW
 #
 # This program is free software: you can redistribute it and/or modify

@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2014 Jim Unroe <rock.unroe@gmail.com>
 # Copyright 2014 Dan Smith <dsmith@danplanet.com>
 #

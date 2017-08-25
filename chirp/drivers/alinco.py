@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2011 Dan Smith <dsmith@danplanet.com>
 #           2016 Matt Weyland <lt-betrieb@hb9uf.ch>
 #

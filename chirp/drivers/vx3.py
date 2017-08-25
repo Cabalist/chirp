@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2011 Rick Farina <sidhayn@gmail.com>
 #     based on modification of Dan Smith's original work
 #

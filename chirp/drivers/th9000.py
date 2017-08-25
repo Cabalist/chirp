@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2015 David Fannin KK6DF  <kk6df@arrl.org>
 #
 # This program is free software: you can redistribute it and/or modify

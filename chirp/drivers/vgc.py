@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2016:
 # * Jim Unroe KC9HI, <rock.unroe@gmail.com>
 # * Pavel Milanes CO7WT <pavelmc@gmail.com>

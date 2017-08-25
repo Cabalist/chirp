@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2010 Vernon Mauery <vernon@mauery.org>
 # Copyright 2016 Angus Ainslie <angus@akkea.ca>
 #

@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2011 Dan Smith <dsmith@danplanet.com>
 #
 # FT-2900-specific modifications by Richard Cochran, <ag6qr@sonic.net>

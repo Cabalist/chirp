@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2015 Lepik.stv <lepik.stv@gmail.com>
 # based on modification of Dan Smith's and Jim Unroe original work
 #

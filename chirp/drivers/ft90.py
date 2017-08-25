@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2011 Dan Smith <dsmith@danplanet.com>
 # Copyright 2013 Jens Jensen AF5MI <kd4tjx@yahoo.com>
 #

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 #
 # Copyright 2013 Jens Jensen AF5MI <kd4tjx@yahoo.com>
 

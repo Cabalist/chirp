@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=utf-8
 
 import polib
 from string import Formatter

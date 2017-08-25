@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2017 SASANO Takayoshi (JG1UAA) <uaa@uaa.org.uk>
 #
 # This program is free software: you can redistribute it and/or modify

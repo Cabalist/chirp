@@ -1,3 +1,4 @@
+# coding=utf-8
 # Copyright 2013 Jens Jensen AF5MI <kd4tjx@yahoo.com>
 # Based on work by Jim Unroe, Dan Smith, et al.
 # Special thanks to Mats SM0BTP for equipment donation.

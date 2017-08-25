@@ -1,3 +1,4 @@
+# coding=utf-8
 # YPL parser 1.5
 
 # written by VB.

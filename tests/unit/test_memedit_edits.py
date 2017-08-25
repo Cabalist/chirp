@@ -1,3 +1,4 @@
+# coding=utf-8
 import mox
 from tests.unit import base
 
