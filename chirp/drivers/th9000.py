@@ -559,10 +559,10 @@ class Th9000Radio(chirp_common.CloneModeRadio,
         _mem = self._memobj.memory[number]
 
         # get flag info
-        cbyte = number / 8 ;
-        cbit =  7 - (number % 8) ;
-        setflag = self._memobj.csetflag[cbyte].c[cbit]; 
-        skipflag = self._memobj.cskipflag[cbyte].c[cbit]; 
+        cbyte = number / 8
+        cbit =  7 - (number % 8)
+        setflag = self._memobj.csetflag[cbyte].c[cbit]
+        skipflag = self._memobj.cskipflag[cbyte].c[cbit]
 
         mem = chirp_common.Memory()
 
