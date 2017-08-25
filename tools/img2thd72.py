@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
     buf = thd72bitmap(ifname, invert)
     imgfname = ifname + '\xff' * (48-len(ifname))
-    of = file(ofname, "rb+")
+    of = open(ofname, "rb+")
     of.seek(tagpos)
     of.write('\x01')
     of.seek(imgpos)

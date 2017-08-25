@@ -1122,7 +1122,7 @@ class FileBackedRadio(Radio):
 
     def load_mmap(self, filename):
         """Load the radio's memory map from @filename"""
-        mapfile = file(filename, "rb")
+        mapfile = open(filename, "rb")
         self._mmap = memmap.MemoryMap(mapfile.read())
         mapfile.close()
         self.process_mmap()
@@ -1133,7 +1133,7 @@ class FileBackedRadio(Radio):
         If IOError raise a File Access Error Exception
         """
         try:
-            mapfile = file(filename, "wb")
+            mapfile = open(filename, "wb")
             mapfile.write(self._mmap.get_packed())
             mapfile.close()
         except IOError:

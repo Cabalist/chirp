@@ -89,7 +89,7 @@ class Logger(object):
         if hasattr(sys, "frozen") or not os.isatty(0) \
                 or os.getenv("CHIRP_DEBUG_LOG"):
             p = platform.get_platform()
-            log = file(p.config_file("debug.log"), "w", 0)
+            log = open(p.config_file("debug.log"), "w", 0)
             sys.stdout = log
             sys.stderr = log
             console_stream = log
@@ -120,7 +120,7 @@ class Logger(object):
         if self.logfile is None:
             self.logname = name
             # always truncate the log file
-            with file(name, "w") as fh:
+            with open(name, "w") as fh:
                 pass
             self.logfile = logging.FileHandler(name)
             format_str = self.log_format

@@ -361,7 +361,7 @@ def _clone_to_radio(radio):
     global SAVE_PIPE
 
     # Uncomment to save out a capture of what we actually write to the radio
-    # SAVE_PIPE = file("pipe_capture.log", "w", 0)
+    # SAVE_PIPE = open("pipe_capture.log", "w", 0)
 
     md = get_model_data(radio.pipe)
 
@@ -458,7 +458,7 @@ def convert_data_line(line):
 
 def read_file(filename):
     """Read an ICF file and return the model string and memory data"""
-    f = file(filename)
+    f = open(filename)
 
     mod_str = f.readline()
     dat = f.readlines()
@@ -475,7 +475,7 @@ def read_file(filename):
 
 def is_9x_icf(filename):
     """Returns True if @filename is an IC9x ICF file"""
-    f = file(filename)
+    f = open(filename)
     mdata = f.read(8)
     f.close()
 
@@ -484,7 +484,7 @@ def is_9x_icf(filename):
 
 def is_icf_file(filename):
     """Returns True if @filename is an ICF file"""
-    f = file(filename)
+    f = open(filename)
     data = f.readline()
     data += f.readline()
     f.close()

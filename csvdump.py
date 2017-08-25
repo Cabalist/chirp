@@ -22,7 +22,7 @@ import sys
 from csvdump import csvapp
 
 if hasattr(sys, "frozen"):
-    log = file("debug.log", "w", 0)
+    log = open("debug.log", "w", 0)
     sys.stderr = log
     sys.stdout = log
     print "Log initialized"

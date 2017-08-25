@@ -1554,7 +1554,7 @@ of file.
         directory.enable_reregistrations()
 
         try:
-            module = file(filen)
+            module = open(filen)
             code = module.read()
             module.close()
             pyc = compile(code, filen, 'exec')

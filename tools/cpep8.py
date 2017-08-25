@@ -44,7 +44,7 @@ args = parser.parse_args()
 
 
 def file_to_lines(name):
-    fh = file(name, "r")
+    fh = open(name, "r")
     lines = fh.read().split("\n")
     lines.pop()
     fh.close()
@@ -64,7 +64,7 @@ if args.scan:
             if f.endswith('.py'):
                 manifest.append(filename)
                 continue
-            with file(filename, "r") as fh:
+            with open(filename, "r") as fh:
                 shebang = fh.readline()
                 if shebang.startswith("#!/usr/bin/env python"):
                     manifest.append(filename)
@@ -99,7 +99,7 @@ if args.update:
             bad.append(f)
         print "%s: %s" % (results.total_errors and "FAIL" or "PASS", f)
 
-    with file(blacklist_filename, "w") as fh:
+    with open(blacklist_filename, "w") as fh:
         print >>fh, """\
 # cpep8.blacklist: The list of files that do not meet PEP8 standards.
 # DO NOT ADD NEW FILES!!  Instead, fix the code to be compliant.
@@ -107,7 +107,7 @@ if args.update:
         print >>fh, "\n".join(sorted(bad))
 
     if args.scan:
-        with file(manifest_filename, "w") as fh:
+        with open(manifest_filename, "w") as fh:
             print >>fh, "\n".join(sorted(manifest))
     sys.exit(0)
 

@@ -329,7 +329,7 @@ class UnixPlatform(Platform):
 
     def os_version_string(self):
         try:
-            issue = file("/etc/issue.net", "r")
+            issue = open("/etc/issue.net", "r")
             ver = issue.read().strip().replace("\r", "").replace("\n", "")[:64]
             issue.close()
             ver = "%s - %s" % (os.uname()[0], ver)
