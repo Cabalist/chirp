@@ -25,8 +25,9 @@ LOG = logging.getLogger(__name__)
 POL = ["NN", "NR", "RN", "RR"]
 
 
-class ValueEditor:
+class ValueEditor(object):
     """Base class"""
+
     def __init__(self, features, memory, errfn, name, data=None):
         self._features = features
         self._memory = memory

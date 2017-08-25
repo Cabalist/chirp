@@ -102,7 +102,7 @@ def get_tb():
     return traceback.format_exc()
 
 
-class TestWrapper:
+class TestWrapper(object):
     def __init__(self, dstclass, filename):
         self._ignored_exceptions = []
         self._dstclass = dstclass
@@ -146,8 +146,8 @@ class TestWrapper:
             for arg in args:
                 if isinstance(arg, chirp_common.Memory):
                     details += os.linesep + \
-                        os.linesep.join(["%s:%s" % (k, v) for k, v
-                                         in arg.__dict__.items()])
+                               os.linesep.join(["%s:%s" % (k, v) for k, v
+                                                in arg.__dict__.items()])
             raise TestCrashError(get_tb(), e, details)
 
         if self._make_reload:
@@ -167,7 +167,7 @@ class TestWrapper:
         return self._dst
 
 
-class TestCase:
+class TestCase(object):
     def __init__(self, wrapper):
         self._wrapper = wrapper
 
@@ -201,27 +201,27 @@ class TestCase:
             elif k == "tuning_step" and not rf.has_tuning_step:
                 continue
             elif k == "rtone" and not (
-                        a.tmode == "Tone" or
-                        (a.tmode == "TSQL" and not rf.has_ctone) or
-                        (a.tmode == "Cross" and tx_mode == "Tone") or
+                                    a.tmode == "Tone" or
+                                (a.tmode == "TSQL" and not rf.has_ctone) or
+                            (a.tmode == "Cross" and tx_mode == "Tone") or
                         (a.tmode == "Cross" and rx_mode == "Tone" and
-                         not rf.has_ctone)
-                        ):
+                             not rf.has_ctone)
+            ):
                 continue
             elif k == "ctone" and (not rf.has_ctone or
-                                   not (a.tmode == "TSQL" or
-                                        (a.tmode == "Cross" and
-                                         rx_mode == "Tone"))):
+                                       not (a.tmode == "TSQL" or
+                                                (a.tmode == "Cross" and
+                                                         rx_mode == "Tone"))):
                 continue
             elif k == "dtcs" and not (
-                    (a.tmode == "DTCS" and not rf.has_rx_dtcs) or
-                    (a.tmode == "Cross" and tx_mode == "DTCS") or
-                    (a.tmode == "Cross" and rx_mode == "DTCS" and
-                     not rf.has_rx_dtcs)):
+                            (a.tmode == "DTCS" and not rf.has_rx_dtcs) or
+                            (a.tmode == "Cross" and tx_mode == "DTCS") or
+                        (a.tmode == "Cross" and rx_mode == "DTCS" and
+                             not rf.has_rx_dtcs)):
                 continue
             elif k == "rx_dtcs" and (not rf.has_rx_dtcs or
-                                     not (a.tmode == "Cross" and
-                                          rx_mode == "DTCS")):
+                                         not (a.tmode == "Cross" and
+                                                      rx_mode == "DTCS")):
                 continue
             elif k == "offset" and not a.duplex:
                 continue
@@ -231,8 +231,8 @@ class TestCase:
             try:
                 if b.__dict__[k] != v:
                     msg = "Field `%s' " % k + \
-                        "is `%s', " % b.__dict__[k] + \
-                        "expected `%s' " % v
+                          "is `%s', " % b.__dict__[k] + \
+                          "expected `%s' " % v
 
                     details = msg
                     details += os.linesep + "### Wanted:" + os.linesep
@@ -816,7 +816,7 @@ TESTS["Detect"] = TestCaseDetect
 
 
 class TestCaseClone(TestCase):
-    class SerialNone:
+    class SerialNone(object):
         def read(self, size):
             return ""
 
@@ -923,7 +923,7 @@ class TestCaseClone(TestCase):
 TESTS["Clone"] = TestCaseClone
 
 
-class TestOutput:
+class TestOutput(object):
     def __init__(self, output=None):
         if not output:
             output = sys.stdout
@@ -936,7 +936,7 @@ class TestOutput:
         pass
 
     def _print(self, string):
-        print >>self._out, string
+        print >> self._out, string
 
     def report(self, rclass, tc, msg, e):
         name = ("%s %s" % (rclass.MODEL, rclass.VARIANT))[:13]
@@ -1053,7 +1053,7 @@ td.SKIPPED {
         sys.stdout.flush()
 
 
-class TestRunner:
+class TestRunner(object):
     def __init__(self, images_dir, test_list, test_out):
         self._images_dir = images_dir
         self._test_list = test_list
@@ -1075,10 +1075,10 @@ class TestRunner:
     def log(self, rclass, tc, e):
         fn = "logs/%s_%s.log" % (directory.get_driver(rclass), tc)
         log = open(fn, "a")
-        print >>log, "---- Begin test %s ----" % tc
+        print >> log, "---- Begin test %s ----" % tc
         log.write(e.get_detail())
-        print >>log
-        print >>log, "---- End test %s ----" % tc
+        print >> log
+        print >> log, "---- End test %s ----" % tc
         log.close()
 
     def nuke_log(self, rclass, tc):
@@ -1151,6 +1151,7 @@ class TestRunner:
     def run_list(self, run_list):
         def _key(pair):
             return pair[0].VENDOR + pair[0].MODEL + pair[0].VARIANT
+
         failed = 0
         for rclass, image in sorted(run_list, key=_key):
             failed += self.run_rclass_image(rclass, image)

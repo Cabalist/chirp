@@ -565,7 +565,7 @@ class MemoryEditor(common.Editor):
             self.emit("usermsg", "No room to %s" % (action.replace("_", " ")))
             return False  # No change
 
-        class Context:
+        class Context(object):
             pass
         ctx = Context()
 

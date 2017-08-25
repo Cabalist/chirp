@@ -71,7 +71,7 @@ def natural_sorted(l):
     return sorted(l, key=natural_key)
 
 
-class Platform:
+class Platform(object):
     """Base class for platform-specific functions"""
 
     def __init__(self, basepath):
@@ -231,6 +231,7 @@ class Platform:
 
     def executable_path(self):
         """Return a full path to the program executable"""
+
         def we_are_frozen():
             return hasattr(sys, "frozen")
 

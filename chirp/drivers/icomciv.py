@@ -104,7 +104,7 @@ char name[9];
 SPLIT = ["", "spl"]
 
 
-class Frame:
+class Frame(object):
     """Base class for an ICF frame"""
     _cmd = 0x00
     _sub = 0x00

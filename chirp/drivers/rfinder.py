@@ -167,8 +167,9 @@ def fuzzy_to(lat_a, lon_a, lat_b, lon_b):
     return direction
 
 
-class RFinderParser:
+class RFinderParser(object):
     """Parser for RFinder's data format"""
+
     def __init__(self, lat, lon):
         self.__memories = []
         self.__cheat = {}
@@ -186,7 +187,7 @@ class RFinderParser:
             "lon": "%7.5f" % coords[1],
             "radius": "%i" % radius,
             "vers": "CH%s" % CHIRP_VERSION,
-            }
+        }
 
         _url = "https://www.rfinder.net/query.php?%s" % \
                ("&".join(["%s=%s" % (k, v) for k, v in args.items()]))

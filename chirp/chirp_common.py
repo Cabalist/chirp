@@ -153,7 +153,7 @@ def dBm_to_watts(dBm):
     return int(math.pow(10, (dBm - 30) / 10))
 
 
-class PowerLevel:
+class PowerLevel(object):
     """Represents a power level supported by a radio"""
 
     def __init__(self, label, watts=0, dBm=0):
@@ -228,7 +228,7 @@ class ImmutableValueError(ValueError):
     pass
 
 
-class Memory:
+class Memory(object):
     """Base class for a single radio memory"""
     freq = 0
     number = 0
@@ -634,7 +634,7 @@ class BankModel(MappingModel):
         super(BankModel, self).__init__(radio, name)
 
 
-class MappingModelIndexInterface:
+class MappingModelIndexInterface(object):
     """Interface for mappings with index capabilities"""
 
     def get_index_bounds(self):
@@ -673,7 +673,7 @@ def console_status(status):
         sys.stdout.write(os.linesep)
 
 
-class RadioPrompts:
+class RadioPrompts(object):
     """Radio prompt strings"""
     experimental = None
     pre_download = None
@@ -684,7 +684,7 @@ class RadioPrompts:
 BOOLEAN = [True, False]
 
 
-class RadioFeatures:
+class RadioFeatures(object):
     """Radio Feature Flags"""
     _valid_map = {
         # General
@@ -875,13 +875,13 @@ class RadioFeatures:
         lo, hi = self.memory_bounds
         if not self.has_infinite_number and \
                 (mem.number < lo or mem.number > hi) and \
-                mem.extd_number not in self.valid_special_chans:
+                        mem.extd_number not in self.valid_special_chans:
             msg = ValidationWarning("Location %i is out of range" % mem.number)
             msgs.append(msg)
 
         if (self.valid_modes and
-                mem.mode not in self.valid_modes and
-                mem.mode != "Auto"):
+                    mem.mode not in self.valid_modes and
+                    mem.mode != "Auto"):
             msg = ValidationError("Mode %s not supported" % mem.mode)
             msgs.append(msg)
 
@@ -891,22 +891,22 @@ class RadioFeatures:
         else:
             if mem.tmode == "Cross":
                 if self.valid_cross_modes and \
-                        mem.cross_mode not in self.valid_cross_modes:
+                                mem.cross_mode not in self.valid_cross_modes:
                     msg = ValidationError("Cross tone mode %s not supported" %
                                           mem.cross_mode)
                     msgs.append(msg)
 
         if self.has_dtcs_polarity and \
-                mem.dtcs_polarity not in self.valid_dtcs_pols:
+                        mem.dtcs_polarity not in self.valid_dtcs_pols:
             msg = ValidationError("DTCS Polarity %s not supported" %
                                   mem.dtcs_polarity)
             msgs.append(msg)
 
         if self.valid_dtcs_codes and \
-                mem.dtcs not in self.valid_dtcs_codes:
+                        mem.dtcs not in self.valid_dtcs_codes:
             msg = ValidationError("DTCS Code %03i not supported" % mem.dtcs)
         if self.valid_dtcs_codes and \
-                mem.rx_dtcs not in self.valid_dtcs_codes:
+                        mem.rx_dtcs not in self.valid_dtcs_codes:
             msg = ValidationError("DTCS Code %03i not supported" % mem.rx_dtcs)
 
         if self.valid_duplexes and mem.duplex not in self.valid_duplexes:
@@ -933,7 +933,7 @@ class RadioFeatures:
 
         if self.valid_bands and \
                 self.valid_duplexes and \
-                mem.duplex in ["split", "-", "+"]:
+                        mem.duplex in ["split", "-", "+"]:
             if mem.duplex == "split":
                 freq = mem.offset
             elif mem.duplex == "-":
@@ -953,7 +953,7 @@ class RadioFeatures:
 
         if mem.power and \
                 self.valid_power_levels and \
-                mem.power not in self.valid_power_levels:
+                        mem.power not in self.valid_power_levels:
             msg = ValidationWarning("Power level %s not supported" % mem.power)
             msgs.append(msg)
 
@@ -1202,7 +1202,7 @@ class NetworkSourceRadio(Radio):
         pass
 
 
-class IcomDstarSupport:
+class IcomDstarSupport(object):
     """Base interface for radios supporting Icom's D-STAR technology"""
     MYCALL_LIMIT = (1, 1)
     URCALL_LIMIT = (1, 1)
@@ -1233,15 +1233,16 @@ class IcomDstarSupport:
         pass
 
 
-class ExperimentalRadio:
+class ExperimentalRadio(object):
     """Interface for experimental radios"""
+
     @classmethod
     def get_experimental_warning(cls):
         return ("This radio's driver is marked as experimental and may " +
                 "be unstable or unsafe to use.")
 
 
-class Status:
+class Status(object):
     """Clone status object for conveying clone progress to the UI"""
     name = "Job"
     msg = "Unknown"

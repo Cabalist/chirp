@@ -160,8 +160,9 @@ def _clone_out(radio):
         raise errors.RadioError("Failed to communicate with the radio: %s" % e)
 
 
-class YaesuChecksum:
+class YaesuChecksum(object):
     """A Yaesu Checksum Object"""
+
     def __init__(self, start, stop, address=None):
         self._start = start
         self._stop = stop
@@ -177,7 +178,7 @@ class YaesuChecksum:
     def get_calculated(self, mmap):
         """Return the calculated value of the checksum"""
         cs = 0
-        for i in range(self._start, self._stop+1):
+        for i in range(self._start, self._stop + 1):
             cs += ord(mmap[i])
         return cs % 256
 

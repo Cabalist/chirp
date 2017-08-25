@@ -32,7 +32,7 @@ CMD_CLONE_END = 0xE5
 SAVE_PIPE = None
 
 
-class IcfFrame:
+class IcfFrame(object):
     """A single ICF communication frame"""
     src = 0
     dst = 0
@@ -77,8 +77,9 @@ def parse_frame_generic(data):
     return frame, data[end+1:]
 
 
-class RadioStream:
+class RadioStream(object):
     """A class to make reading a stream of IcfFrames easier"""
+
     def __init__(self, pipe):
         self.pipe = pipe
         self.data = ""

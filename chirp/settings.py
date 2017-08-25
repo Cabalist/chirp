@@ -28,8 +28,7 @@ class InternalError(Exception):
     pass
 
 
-class RadioSettingValue:
-
+class RadioSettingValue(object):
     """Base class for a single radio setting"""
 
     def __init__(self):
@@ -342,8 +341,7 @@ class RadioSettingGroup(object):
         self[element.get_name()] = element
 
     def __iter__(self):
-        class RSGIterator:
-
+        class RSGIterator(object):
             """Iterator for a RadioSettingGroup"""
 
             def __init__(self, rsg):

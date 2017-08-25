@@ -104,7 +104,7 @@ def parse(data):
         if '//' in line:
             lines[index] = line[:line.index('//')]
 
-    class FakeFileInput:
+    class FakeFileInput(object):
         """Simulate line-by-line file reading from @data"""
         line = -1
 

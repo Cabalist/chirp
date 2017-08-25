@@ -339,7 +339,8 @@ if __name__ == "__main__":
 
     r = directory.get_radio_by_image(sys.argv[1])
 
-    class Foo:
+
+    class Foo(object):
         radio = r
 
     w = gtk.Window()

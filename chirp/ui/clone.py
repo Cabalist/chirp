@@ -29,7 +29,7 @@ LOG = logging.getLogger(__name__)
 AUTO_DETECT_STRING = "Auto Detect (Icom Only)"
 
 
-class CloneSettings:
+class CloneSettings(object):
     def __init__(self):
         self.port = None
         self.radio_class = None

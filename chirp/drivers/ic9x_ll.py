@@ -102,8 +102,9 @@ def ic9x_send(pipe, buf):
     return _ic9x_parse_frames(data)
 
 
-class IC92Frame:
+class IC92Frame(object):
     """IC9x frame base class"""
+
     def get_vfo(self):
         """Return the vfo number"""
         return ord(self._map[0])
@@ -153,13 +154,13 @@ class IC92Frame:
         return response[0]
 
     def __setitem__(self, start, value):
-        self._map[start+4] = value
+        self._map[start + 4] = value
 
     def __getitem__(self, index):
-        return self._map[index+4]
+        return self._map[index + 4]
 
     def __getslice__(self, start, end):
-        return self._map[start+4:end+4]
+        return self._map[start + 4:end + 4]
 
 
 class IC92GetBankFrame(IC92Frame):

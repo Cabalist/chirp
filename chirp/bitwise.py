@@ -135,7 +135,7 @@ def set_string(char_array, string):
     array_copy(char_array, list(string))
 
 
-class DataElement:
+class DataElement(object):
     _size = 1
 
     def __init__(self, data, offset, count=1):
@@ -160,7 +160,7 @@ class DataElement:
         raise Exception("Not implemented for %s" % self.__class__)
 
     def get_raw(self):
-        return self._data[self._offset:self._offset+self._size]
+        return self._data[self._offset:self._offset + self._size]
 
     def set_raw(self, data):
         self._data[self._offset] = data[:self._size]
@@ -723,8 +723,7 @@ class structDataElement(DataElement):
             yield key, self._generators[key]
 
 
-class Processor:
-
+class Processor(object):
     _types = {
         "u8":    u8DataElement,
         "u16":   u16DataElement,
@@ -809,7 +808,7 @@ class Processor:
             for i in range(0, count):
                 if dtype == "bit":
                     gen = self.do_bitarray(i, count)
-                    self._offset += int((i+1) % 8 == 0)
+                    self._offset += int((i + 1) % 8 == 0)
                 else:
                     gen = self._types[dtype](self._data, self._offset)
                     self._offset += (gen.size() / 8)

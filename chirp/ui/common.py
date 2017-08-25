@@ -84,7 +84,7 @@ def DBG(*args):
         LOG.debug(" ".join(args))
 
 
-class RadioJob:
+class RadioJob(object):
     def __init__(self, cb, func, *args, **kwargs):
         self.cb = cb
         self.cb_args = ()

@@ -18,7 +18,7 @@ from ConfigParser import ConfigParser
 import os
 
 
-class ChirpConfig:
+class ChirpConfig(object):
     def __init__(self, basepath, name="chirp.config"):
         self.__basepath = basepath
         self.__name = name
@@ -62,7 +62,7 @@ class ChirpConfig:
             self.__config.remove_section(section)
 
 
-class ChirpConfigProxy:
+class ChirpConfigProxy(object):
     def __init__(self, config, section="global"):
         self._config = config
         self._section = section

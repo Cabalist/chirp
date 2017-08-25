@@ -38,7 +38,7 @@ RADIOS = {"ic9x:A": ic9x.IC9xRadioA,
           }
 
 
-class CsvDumpApp:
+class CsvDumpApp(object):
     def update_status(self, s):
         gobject.idle_add(self.progwin.status, s)
 
@@ -117,9 +117,9 @@ class CsvDumpApp:
             self.mainwin.set_status("%s: %s" % (fname, e))
             return
 
-        print >>f, chirp.chirp_common.Memory.CSV_FORMAT
+        print >> f, chirp.chirp_common.Memory.CSV_FORMAT
         for m in self.radio.get_memories():
-            print >>f, m.to_csv()
+            print >> f, m.to_csv()
             count += 1
         f.close()
 
@@ -135,17 +135,17 @@ class CsvDumpApp:
             gobject.idle_add(self.mainwin.set_status, "%s: %s" % (fname, e))
             return
 
-        print >>f, chirp.chirp_common.Memory.CSV_FORMAT
-        for i in range(l, h+1):
+        print >> f, chirp.chirp_common.Memory.CSV_FORMAT
+        for i in range(l, h + 1):
             s = chirp.chirp_common.Status()
             s.msg = "Reading memory %i" % i
             s.cur = i
-            s.max = h+1
+            s.max = h + 1
             gobject.idle_add(self.progwin.status, s)
 
             try:
                 m = self.radio.get_memory(i)
-                print >>f, m.to_csv()
+                print >> f, m.to_csv()
             except chirp.errors.InvalidMemoryLocation:
                 pass
 
@@ -238,10 +238,10 @@ class CsvDumpApp:
             s.max = len(memories)
             gobject.idle_add(self.progwin.status, s)
 
-#            try:
-#                self.radio.get_memory(m.number, 2)
-#            except errors.InvalidMemoryLocation:
-#                m
+            #            try:
+            #                self.radio.get_memory(m.number, 2)
+            #            except errors.InvalidMemoryLocation:
+            #                m
 
             try:
                 self.radio.set_memory(m)

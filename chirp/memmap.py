@@ -16,7 +16,7 @@
 from chirp import util
 
 
-class MemoryMap:
+class MemoryMap(object):
     """
     A pythonic memory map interface
     """
@@ -41,7 +41,7 @@ class MemoryMap:
         if start == -1:
             return "".join(self._data[start:])
         else:
-            return "".join(self._data[start:start+length])
+            return "".join(self._data[start:start + length])
 
     def set(self, pos, value):
         """Set a chunk of memory at @pos to @value"""
@@ -63,7 +63,7 @@ class MemoryMap:
         return len(self._data)
 
     def __getslice__(self, start, end):
-        return self.get(start, end-start)
+        return self.get(start, end - start)
 
     def __getitem__(self, pos):
         return self.get(pos)
