@@ -21,7 +21,6 @@ from __future__ import print_function
 import os
 import sys
 import serial
-import commands
 
 from chirp import idrp, chirp_common
 

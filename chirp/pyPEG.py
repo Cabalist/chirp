@@ -6,7 +6,6 @@
 import re
 import sys
 import codecs
-import exceptions
 
 
 class keyword(unicode):
@@ -53,14 +52,14 @@ class Symbol(list):
     def __repr__(self):
         return unicode(self)
 
-word_regex = re.compile(ur"\w+")
-rest_regex = re.compile(ur".*")
+word_regex = re.compile(r"\w+")
+rest_regex = re.compile(r".*")
 
 print_trace = False
 
 
 def u(text):
-    if isinstance(text, exceptions.BaseException):
+    if isinstance(text, BaseException):
         text = text.args[0]
     if type(text) is unicode:
         return text
