@@ -396,7 +396,7 @@ def _start_clone_mode(radio, status):
 
     except errors.RadioError:
         raise
-    except Exception, e:
+    except Exception as e:
         raise errors.RadioError("Error sending Magic to radio:\n%s" % e)
 
 
@@ -755,7 +755,7 @@ class BTechMobileCommon(chirp_common.CloneModeRadio,
             _upload(self)
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Error: %s" % e)
 
     def get_raw_memory(self, number):
@@ -2761,7 +2761,7 @@ class BTechMobileCommon(chirp_common.CloneModeRadio,
                     elif element.value.get_mutable():
                         LOG.debug("Setting %s = %s" % (setting, element.value))
                         setattr(obj, setting, element.value)
-                except Exception, e:
+                except Exception as e:
                     LOG.debug(element.get_name())
                     raise
 

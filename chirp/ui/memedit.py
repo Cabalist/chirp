@@ -178,7 +178,7 @@ class MemoryEditor(common.Editor):
 
         try:
             new = chirp_common.parse_freq(new)
-        except ValueError, e:
+        except ValueError as e:
             LOG.error(e)
             new = None
 
@@ -964,7 +964,7 @@ class MemoryEditor(common.Editor):
             for i in col_order:
                 if i not in default_col_order:
                     raise Exception()
-        except Exception, e:
+        except Exception as e:
             LOG.error(e)
             col_order = default_col_order
 

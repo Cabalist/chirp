@@ -59,10 +59,10 @@ class CsvDumpApp:
             radio.save_mmap(fn)
 
             self.refresh_radio()
-        except serial.SerialException, e:
+        except serial.SerialException as e:
             gobject.idle_add(self.mainwin.set_status,
                              "Error: Unable to open serial port")
-        except Exception, e:
+        except Exception as e:
             gobject.idle_add(self.mainwin.set_status,
                              "Error: %s" % e)
 
@@ -93,7 +93,7 @@ class CsvDumpApp:
             radio.load_mmap(fn)
 
             radio.sync_out()
-        except Exception, e:
+        except Exception as e:
             gobject.idle_add(self.mainwin.set_status,
                              "Error: %s" % e)
 
@@ -113,7 +113,7 @@ class CsvDumpApp:
 
         try:
             f = file(fname, "w")
-        except Exception, e:
+        except Exception as e:
             self.mainwin.set_status("%s: %s" % (fname, e))
             return
 
@@ -130,7 +130,7 @@ class CsvDumpApp:
 
         try:
             f = file(fname, "w")
-        except Exception, e:
+        except Exception as e:
             gobject.idle_add(self.progwin.hide)
             gobject.idle_add(self.mainwin.set_status, "%s: %s" % (fname, e))
             return
@@ -196,7 +196,7 @@ class CsvDumpApp:
             m.name = name
             m.number = int(num)
             m.freq = float(freq)
-        except Exception, e:
+        except Exception as e:
             print "Failed to parse `%s': %s" % (line, e)
             return None
 
@@ -207,7 +207,7 @@ class CsvDumpApp:
 
         try:
             f = file(fname, "rU")
-        except Exception, e:
+        except Exception as e:
             gobject.idle_add(self.progwin.hide)
             gobject.idle_add(self.mainwin.set_status,
                              "%s: %s" % (fname, e))
@@ -223,7 +223,7 @@ class CsvDumpApp:
                 m = chirp.chirp_common.Memory.from_csv(line)
             except errors.InvalidMemoryLocation:
                 continue
-            except Exception, e:
+            except Exception as e:
                 print "Parse error on line %i: %s" % (lineno, e)
                 break  # FIXME: Report error here
 
@@ -245,7 +245,7 @@ class CsvDumpApp:
 
             try:
                 self.radio.set_memory(m)
-            except Exception, e:
+            except Exception as e:
                 print "Error setting memory %i: %s" % (m.number, e)
                 break
 
@@ -258,7 +258,7 @@ class CsvDumpApp:
     def _import_file_mmap(self, fname):
         try:
             f = file(fname, "rU")
-        except Exception, e:
+        except Exception as e:
             self.progwin.hide()
             self.mainwin.set_status("%s: %s" % (fname, e))
             return
@@ -272,7 +272,7 @@ class CsvDumpApp:
             try:
                 m = chirp.chirp_common.Memory.from_csv(line.strip())
                 print "Imported: %s" % m
-            except Exception, e:
+            except Exception as e:
                 if lineno == 1:
                     continue
                 import traceback
@@ -303,7 +303,7 @@ class CsvDumpApp:
         if self.radio:
             try:
                 self.radio.pipe.close()
-            except Exception, e:
+            except Exception as e:
                 pass
 
         if not self.rtype.startswith("ic9x"):
@@ -322,7 +322,7 @@ class CsvDumpApp:
                                   timeout=0.1)
                 self.radio = rtype(s)
                 self.mainwin.set_image_info(False, True, "Live")
-            except Exception, e:
+            except Exception as e:
                 smsg = "Error: Unable to open serial port"
                 self.mainwin.set_image_info(False, False, "")
 

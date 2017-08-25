@@ -108,7 +108,7 @@ class RadioStream:
                     frames.append(frame)
 
                 self.data = rest
-            except errors.InvalidDataError, e:
+            except errors.InvalidDataError as e:
                 LOG.error("Failed to parse frame (cmd=%i): %s" % (cmd, e))
                 return []
 
@@ -213,7 +213,7 @@ def process_bcd(bcddata):
             val = int("%s%s" % (bcddata[i], bcddata[i+1]), 16)
             i += 2
             data += struct.pack("B", val)
-        except ValueError, e:
+        except ValueError as e:
             LOG.error("Failed to parse byte: %s" % e)
             break
 
@@ -321,7 +321,7 @@ def clone_from_radio(radio):
     """Do a full clone out of the radio's memory"""
     try:
         return _clone_from_radio(radio)
-    except Exception, e:
+    except Exception as e:
         raise errors.RadioError("Failed to communicate with the radio: %s" % e)
 
 
@@ -411,7 +411,7 @@ def clone_to_radio(radio):
     """Initiate a full memory clone out to @radio"""
     try:
         return _clone_to_radio(radio)
-    except Exception, e:
+    except Exception as e:
         raise errors.RadioError("Failed to communicate with the radio: %s" % e)
 
 
@@ -449,7 +449,7 @@ def convert_data_line(line):
             val = int("%s%s" % (data[i], data[i+1]), 16)
             i += 2
             _mmap += struct.pack("B", val)
-        except ValueError, e:
+        except ValueError as e:
             LOG.debug("Failed to parse byte: %s" % e)
             break
 

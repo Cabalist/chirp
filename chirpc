@@ -255,7 +255,7 @@ if __name__ == "__main__":
         dst = parse_memory_number(radio, args[1:])
         try:
             mem = radio.get_memory(src)
-        except errors.InvalidMemoryLocation, e:
+        except errors.InvalidMemoryLocation as e:
             LOG.exception(e)
             sys.exit(1)
         LOG.info("copying memory %s to %s", src, dst)
@@ -266,7 +266,7 @@ if __name__ == "__main__":
         memnum = parse_memory_number(radio, args)
         try:
             mem = radio.get_memory(memnum)
-        except errors.InvalidMemoryLocation, e:
+        except errors.InvalidMemoryLocation as e:
             LOG.exception(e)
             sys.exit(1)
         if mem.empty:
@@ -318,7 +318,7 @@ if __name__ == "__main__":
         memnum = parse_memory_number(radio, args)
         try:
             mem = radio.get_memory(memnum)
-        except errors.InvalidMemoryLocation, e:
+        except errors.InvalidMemoryLocation as e:
             LOG.exception(e)
             sys.exit(1)
 
@@ -359,7 +359,7 @@ if __name__ == "__main__":
         pos = parse_memory_number(radio, args)
         try:
             mem = radio.get_memory(pos)
-        except errors.InvalidMemoryLocation, e:
+        except errors.InvalidMemoryLocation as e:
             mem = chirp_common.Memory()
             mem.number = pos
 
@@ -376,7 +376,7 @@ if __name__ == "__main__":
         try:
             radio.sync_in()
             radio.save_mmap(options.mmap)
-        except Exception, e:
+        except Exception as e:
             LOG.exception(e)
         sys.exit(1)
 
@@ -391,7 +391,7 @@ if __name__ == "__main__":
             radio.load_mmap(options.mmap)
             radio.sync_out()
             print "Upload successful"
-        except Exception, e:
+        except Exception as e:
             LOG.exception(e)
         sys.exit(1)
 

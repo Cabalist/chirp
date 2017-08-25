@@ -72,7 +72,7 @@ class RadioReferenceRadio(chirp_common.NetworkSourceRadio):
             service = self._client.service
             zipcode = service.getZipcodeInfo(self._zip, self._auth)
             county = service.getCountyInfo(zipcode.ctid, self._auth)
-        except WebFault, err:
+        except WebFault as err:
             raise errors.RadioError(err)
 
         status = chirp_common.Status()

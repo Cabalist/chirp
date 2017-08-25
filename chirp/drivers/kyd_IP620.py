@@ -181,7 +181,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
             self.pipe.write("\x06")
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Radio refused to exit programming mode: %s" % e)
 
     def _ip620_enter_programming_mode(self):
@@ -192,7 +192,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
             _ack = self.pipe.read(1)
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Error communicating with radio: %s" % e)
         if not _ack:
             raise errors.RadioError("No response from radio")
@@ -203,7 +203,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
             _ident = self.pipe.read(8)
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Error communicating with radio: %s" % e)
         if not _ident.startswith("\x06\x4B\x47\x36\x37\x01\x56\xF8"):
             print util.hexprint(_ident)
@@ -213,7 +213,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
             _ack = self.pipe.read(1)
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Error communicating with radio: %s" % e)
         if _ack != CMD_ACK:
             raise errors.RadioError("Radio refused to enter programming mode")
@@ -316,7 +316,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
             self._mmap = self._do_download()
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Failed to communicate with radio: %s" % e)
         self.process_mmap()
 
@@ -595,7 +595,7 @@ class IP620Radio(chirp_common.CloneModeRadio,
                 setattr(self._memobj.settings_misc,
                         element.get_name(),
                         element.value)
-            except Exception, e:
+            except Exception as e:
                 LOG.debug(element.get_name())
                 raise
 
@@ -622,6 +622,6 @@ class IP620Radio(chirp_common.CloneModeRadio,
                     setattr(_settings_misc, setting, newval)
                 else:
                     setattr(_settings, setting, newval)
-            except Exception, e:
+            except Exception as e:
                 LOG.debug(element.get_name())
                 raise

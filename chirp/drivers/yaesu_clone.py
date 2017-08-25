@@ -96,7 +96,7 @@ def __clone_in(radio):
 def _clone_in(radio):
     try:
         return __clone_in(radio)
-    except Exception, e:
+    except Exception as e:
         raise errors.RadioError("Failed to communicate with the radio: %s" % e)
 
 
@@ -156,7 +156,7 @@ def __clone_out(radio):
 def _clone_out(radio):
     try:
         return __clone_out(radio)
-    except Exception, e:
+    except Exception as e:
         raise errors.RadioError("Failed to communicate with the radio: %s" % e)
 
 

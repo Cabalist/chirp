@@ -129,7 +129,7 @@ class TestWrapper:
         if self._make_reload:
             try:
                 self.open()
-            except Exception, e:
+            except Exception as e:
                 raise TestCrashError(get_tb(), e, "[Loading]")
 
         try:
@@ -139,7 +139,7 @@ class TestWrapper:
 
         try:
             ret = fn(*args, **kwargs)
-        except Exception, e:
+        except Exception as e:
             if type(e) in self._ignored_exceptions:
                 raise e
             details = str(args) + str(kwargs)
@@ -153,7 +153,7 @@ class TestWrapper:
         if self._make_reload:
             try:
                 self.close()
-            except Exception, e:
+            except Exception as e:
                 raise TestCrashError(get_tb(), e, "[Saving]")
 
         return ret
@@ -242,7 +242,7 @@ class TestCase:
                     details += os.linesep.join(["%s:%s" % (k, v) for k, v
                                                 in b.__dict__.items()])
                     raise TestFailedError(msg, details)
-            except KeyError, e:
+            except KeyError as e:
                 print sorted(a.__dict__.keys())
                 print sorted(b.__dict__.keys())
                 raise
@@ -282,11 +282,11 @@ class TestCaseCopyAll(TestCase):
                                          src_mem)
             except import_logic.DestNotCompatible:
                 continue
-            except import_logic.ImportError, e:
+            except import_logic.ImportError as e:
                 failures.append(TestFailedError("<%i>: Import Failed: %s" %
                                                 (dst_number, e)))
                 continue
-            except Exception, e:
+            except Exception as e:
                 raise TestCrashError(get_tb(), e, "[Import]")
 
             self._wrapper.do("set_memory", dst_mem)
@@ -294,7 +294,7 @@ class TestCaseCopyAll(TestCase):
 
             try:
                 self.compare_mem(dst_mem, ret_mem)
-            except TestFailedError, e:
+            except TestFailedError as e:
                 failures.append(
                     TestFailedError("<%i>: %s" % (number, e), e.get_detail()))
 
@@ -351,7 +351,7 @@ class TestCaseBruteForce(TestCase):
 
                 try:
                     self.set_and_compare(m)
-                except errors.UnsupportedToneError, e:
+                except errors.UnsupportedToneError as e:
                     # If a radio doesn't support a particular tone value,
                     # don't punish it
                     pass
@@ -637,7 +637,7 @@ class TestCaseBanks(TestCase):
                 bank.set_name(testname)
             except AttributeError:
                 return [], []
-            except Exception, e:
+            except Exception as e:
                 if str(e) == "Not implemented":
                     return [], []
                 else:
@@ -802,7 +802,7 @@ class TestCaseDetect(TestCase):
 
         try:
             radio = directory.get_radio_by_image(filename)
-        except Exception, e:
+        except Exception as e:
             raise TestFailedError("Failed to detect", str(e))
 
         if issubclass(self._wrapper._dstclass, radio.__class__):
@@ -861,7 +861,7 @@ class TestCaseClone(TestCase):
         live = isinstance(self._wrapper._dst, chirp_common.LiveRadio)
         try:
             radio = self._wrapper._dst.__class__(serial)
-        except Exception, e:
+        except Exception as e:
             error = e
 
         radio.status_fn = lambda s: True
@@ -879,7 +879,7 @@ class TestCaseClone(TestCase):
         error = None
         try:
             radio.sync_in()
-        except Exception, e:
+        except Exception as e:
             error = e
 
         if error is None:
@@ -898,7 +898,7 @@ class TestCaseClone(TestCase):
         error = None
         try:
             radio.sync_out()
-        except Exception, e:
+        except Exception as e:
             error = e
 
         if error is None:
@@ -1105,18 +1105,18 @@ class TestRunner:
                         self.log(rclass, tc, e)
                     nfailed += 1
                     nprinted += 1
-            except TestFailedError, e:
+            except TestFailedError as e:
                 self.report(rclass, tc, "FAILED", e)
                 if e.get_detail():
                     self.log(rclass, tc, e)
                 nfailed += 1
                 nprinted += 1
-            except TestCrashError, e:
+            except TestCrashError as e:
                 self.report(rclass, tc, "CRASHED", e)
                 self.log(rclass, tc, e)
                 nfailed += 1
                 nprinted += 1
-            except TestSkippedError, e:
+            except TestSkippedError as e:
                 self.report(rclass, tc, "SKIPPED", e)
                 self.log(rclass, tc, e)
                 nprinted += 1

@@ -914,7 +914,7 @@ class Kenwood_Serie_60G(chirp_common.CloneModeRadio):
             do_upload(self)
         except errors.RadioError:
             raise
-        except Exception, e:
+        except Exception as e:
             raise errors.RadioError("Failed to communicate with radio: %s" % e)
 
     def process_mmap(self):

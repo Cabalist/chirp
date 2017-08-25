@@ -377,7 +377,7 @@ def parse(language, lineSource, skipWS=True, skipComments=None,
         if text:
             raise SyntaxError()
 
-    except SyntaxError, msg:
+    except SyntaxError as msg:
         parsed = textlen - p.restlen
         textlen = 0
         nn, lineNo, file = 0, 0, u""
