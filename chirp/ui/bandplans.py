@@ -86,7 +86,7 @@ class BandPlans(object):
 
     def select_bandplan(self, parent_window):
         plans = ["None"]
-        for shortname, details in self.plans.iteritems():
+        for shortname, details in self.plans.items():
             if self._config.get_bool(shortname, "bandplan"):
                 plans.insert(0, details[0])
             else:
@@ -103,7 +103,7 @@ class BandPlans(object):
 
         if r == gtk.RESPONSE_OK:
             selection = d.choice.get_active_text()
-            for shortname, details in self.plans.iteritems():
+            for shortname, details in self.plans.items():
                 self._config.set_bool(shortname, selection == details[0],
                                       "bandplan")
                 if selection == details[0]:

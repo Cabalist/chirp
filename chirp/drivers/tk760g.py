@@ -825,7 +825,7 @@ class Kenwood_Serie_60G(chirp_common.CloneModeRadio):
         # building the data for the memmap
         fdata = ""
 
-        for k, v in data.iteritems():
+        for k, v in data.items():
             # posible bad data
             if k == 0:
                 k = 1

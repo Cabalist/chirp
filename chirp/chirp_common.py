@@ -1482,6 +1482,6 @@ def sanitize_string(astring, validcharset=CHARSET_ASCII, replacechar='*'):
     myfilter = ''.join(
         [
             [replacechar, chr(x)][chr(x) in validcharset]
-            for x in xrange(256)
+            for x in range(256)
         ])
     return astring.translate(myfilter)

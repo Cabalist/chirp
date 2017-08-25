@@ -177,7 +177,7 @@ struct {
 def do_ident(radio):
     radio.pipe.timeout = 3
     radio.pipe.write("\x05PROGRAM")
-    for x in xrange(10):
+    for x in range(10):
         ack = radio.pipe.read(1)
         if ack == '\x06':
             break
